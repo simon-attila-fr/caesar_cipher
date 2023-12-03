@@ -42,7 +42,7 @@ Textarea.propTypes = {
   readonly: PropTypes.bool,
   required: PropTypes.bool,
   rows: PropTypes.string,
-  value: PropTypes.func,
+  value: PropTypes.string,
   onChange: PropTypes.func
 };
 

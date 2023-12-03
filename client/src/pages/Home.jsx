@@ -1,13 +1,31 @@
-import { useRef } from "react";
-import Button from "../components/Button/Button";
+import { useState, useRef, useEffect } from "react";
+// import Button from "../components/Button/Button";
 import Textarea from "../components/Textarea/Textarea";
+import Caesar from "../components/Caesar/Caesar";
 
 function Home() {
+  const [plainText, setPlainText] = useState("");
   const plaintextRef = useRef(null);
 
-  function handleCaesarClick() {
-    plaintextRef.current.value = "Hello";
+  const [encryptedText, setEncryptedText] = useState("");
+  const [shift, setShift] = useState(0);
+
+  function handlePlainText(e) {
+    setPlainText(e.target.value);
   }
+  
+  // function handleCaesarClick() {
+  //   // setEncryptedText(Caesar(plainText, Number(shift)))
+  // }
+
+  function handleShift(e) {
+    console.log(shift)
+    setShift(e.target.value)
+  }
+
+  useEffect(() => {
+    setEncryptedText(Caesar(plainText, Number(shift)))
+  }, [plainText, encryptedText, shift]);
 
   return (
     <>
@@ -31,7 +49,7 @@ function Home() {
           <label htmlFor="caesar-cipher-home-plaintext">Plaintext</label>
           <Textarea
             autofocus={true}
-            cols="50"
+            cols="80"
             form="caesar-cipher-home-form"
             rows="10"
             id="caesar-cipher-home-plaintext"
@@ -39,6 +57,8 @@ function Home() {
             placeholder="Your text to be caesared..."
             readOnly={false}
             required
+            value={plainText}
+            onChange={handlePlainText}
             ref={plaintextRef}
           />
           <label htmlFor="caesar-cipher-home-shift">Shift</label>
@@ -46,15 +66,16 @@ function Home() {
             type="number"
             name="shift"
             id="caesar-cipher-home-shift"
+            onChange={handleShift}
           ></input>
-          <Button onClick={handleCaesarClick}>
+          {/* <Button onClick={handleCaesarClick}>
             ENCRYPT
-          </Button>
+          </Button> */}
         </form>
       </div>
       <div>
         <h2>Encrypted text</h2>
-        <textarea readOnly="true" placeholder="Encrypted text" />
+        <Textarea readOnly="true" placeholder="Encrypted text" value={encryptedText} cols="80" rows="10"/>
         <button>Copy to clipboard</button>
       </div>
     </>
