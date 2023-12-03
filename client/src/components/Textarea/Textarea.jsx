@@ -10,6 +10,8 @@ export default function Textarea({
   readonly,
   required,
   rows,
+  value,
+  onChange,
 }) {
   return (
     <textarea
@@ -22,6 +24,8 @@ export default function Textarea({
       readOnly={readonly}
       required={required}
       rows={rows}
+      value={value}
+      onChange={onChange}
     />
   );
 }
@@ -36,4 +40,6 @@ Textarea.propTypes = {
   readonly: PropTypes.bool,
   required: PropTypes.bool,
   rows: PropTypes.string,
+  value: PropTypes.func,
+  onChange: PropTypes.func
 };
