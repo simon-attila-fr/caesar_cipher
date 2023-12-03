@@ -1,10 +1,12 @@
+import { useRef } from "react";
 import Button from "../components/Button/Button";
 import Textarea from "../components/Textarea/Textarea";
 
 function Home() {
-  function handleCaesarClick(e) {
-    e.preventDefault();
-    console.log(e.target.innerHTML)
+  const plaintextRef = useRef(null);
+
+  function handleCaesarClick() {
+    plaintextRef.current.value = "Hello";
   }
 
   return (
@@ -37,6 +39,7 @@ function Home() {
             placeholder="Your text to be caesared..."
             readOnly={false}
             required
+            ref={plaintextRef}
           />
           <label htmlFor="caesar-cipher-home-shift">Shift</label>
           <input
@@ -44,10 +47,9 @@ function Home() {
             name="shift"
             id="caesar-cipher-home-shift"
           ></input>
-          <Button type="reset" onClick={handleCaesarClick}>
+          <Button onClick={handleCaesarClick}>
             ENCRYPT
           </Button>
-          <button>Encrypt</button>
         </form>
       </div>
       <div>
