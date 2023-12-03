@@ -1,6 +1,7 @@
+import { forwardRef } from "react";
 import PropTypes from "prop-types";
 
-export default function Textarea({
+const Textarea = forwardRef(function Textarea({
   autofocus,
   cols,
   form,
@@ -12,7 +13,7 @@ export default function Textarea({
   rows,
   value,
   onChange,
-}) {
+}, ref) {
   return (
     <textarea
       autoFocus={autofocus}
@@ -26,9 +27,10 @@ export default function Textarea({
       rows={rows}
       value={value}
       onChange={onChange}
+      ref={ref}
     />
   );
-}
+})
 
 Textarea.propTypes = {
   autofocus: PropTypes.bool,
@@ -43,3 +45,5 @@ Textarea.propTypes = {
   value: PropTypes.func,
   onChange: PropTypes.func
 };
+
+export default Textarea;
