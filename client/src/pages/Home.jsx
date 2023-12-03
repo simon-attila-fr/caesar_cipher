@@ -1,6 +1,12 @@
+import Button from "../components/Button/Button";
 import Textarea from "../components/Textarea/Textarea";
 
 function Home() {
+  function handleCaesarClick(e) {
+    e.preventDefault();
+    console.log(e.target.innerHTML)
+  }
+
   return (
     <>
       <div>
@@ -38,6 +44,9 @@ function Home() {
             name="shift"
             id="caesar-cipher-home-shift"
           ></input>
+          <Button type="reset" onClick={handleCaesarClick}>
+            ENCRYPT
+          </Button>
           <button>Encrypt</button>
         </form>
       </div>
