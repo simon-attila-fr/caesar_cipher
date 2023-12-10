@@ -1,5 +1,6 @@
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import NavBar from '../NavBar/NavBar'
+import { Link } from 'react-router-dom';
 
 export default function Header({title}) {
     const menu_items = [
@@ -18,7 +19,7 @@ export default function Header({title}) {
     return(
         <>
             <h1>
-                {title}
+                <Link to={'/'}>{title}</Link> 
             </h1>
             <NavBar menu_items={menu_items}/>
         </>
