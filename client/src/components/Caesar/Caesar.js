@@ -30,7 +30,7 @@ export default function Caesar(phrase, shifting) {
   }
 
   function shiftingNormalizer(num) {
-    return num > 26 || num < -26 ? num % 26 : num;
+    return num > 27 || num < -27 ? num % 27 : num;
   }
 
   function findIndex(str) {
@@ -39,11 +39,11 @@ export default function Caesar(phrase, shifting) {
 
   function indexNormalizer(arr) {
     for (let i = 0; i < arr.length; i++) {
-      if (arr[i] > 25) {
-        arr[i] = arr[i] - 26;
+      if (arr[i] > 26) {
+        arr[i] = arr[i] - 27;
       }
       if (arr[i] < 0) {
-        arr[i] = arr[i] + 26;
+        arr[i] = arr[i] + 27;
       }
     }
     return arr;
