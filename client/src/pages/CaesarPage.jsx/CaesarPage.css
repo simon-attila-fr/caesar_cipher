@@ -1,0 +1,18 @@
+#caesar-caesarpage-form-plaintext {
+    display: flex;
+    justify-content: space-between;
+}
+
+#caesar-caesarpage-form-plaintext-shift {
+    display: flex;
+    flex-direction: column;
+}
+
+#caesar-caesarpage-form-plaintext-textarea {
+    resize: none;
+    width: 80%;
+}
+
+#caesar-caesarpage-form-plaintext-textarea:focus-visible {
+    outline: var(--main-font-color-light-scheme) auto 2px;
+}

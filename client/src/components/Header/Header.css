@@ -1,0 +1,20 @@
+.caesar-home-header {
+    margin: 1.5em 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.caesar-home-header-navbar {
+    margin: auto;
+}
+
+.caesar-home-header-navbar ul {
+    /* reset user agent */
+    margin-block-start: 0;
+    margin-block-end: 0;
+    padding-inline-start: 0;
+
+    display: flex;
+    gap: 40px;
+}

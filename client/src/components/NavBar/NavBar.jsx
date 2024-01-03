@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
 import NavBarLine from "./NavBarLine";
 
-export default function NavBar({ menu_items }) {
+export default function NavBar({ menu_items, classname }) {
   return (
-    <nav>
+    <nav className={classname}>
       <ul>
         {menu_items.map((e) => (
           <NavBarLine key={e.id} link={e.link}>
@@ -23,4 +23,5 @@ NavBar.propTypes = {
       menu_text: PropTypes.string.isRequired,
     })
   ),
+  classname: PropTypes.string
 };
