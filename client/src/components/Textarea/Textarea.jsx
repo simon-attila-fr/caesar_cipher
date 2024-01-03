@@ -1,7 +1,9 @@
 import { forwardRef } from "react";
 import PropTypes from "prop-types";
+import "./Textarea.css";
 
 const Textarea = forwardRef(function Textarea({
+  classname,
   autofocus,
   cols,
   form,
@@ -16,6 +18,7 @@ const Textarea = forwardRef(function Textarea({
 }, ref) {
   return (
     <textarea
+      className={classname}
       autoFocus={autofocus}
       cols={cols}
       id={id}
@@ -33,6 +36,7 @@ const Textarea = forwardRef(function Textarea({
 })
 
 Textarea.propTypes = {
+  classname: PropTypes.string,
   autofocus: PropTypes.bool,
   cols: PropTypes.string,
   form: PropTypes.string,
