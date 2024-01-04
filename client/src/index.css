@@ -5,6 +5,7 @@
 :root {
   --main-font-color-light-scheme: #523526;
   --main-background-color-light-scheme: #f5edda;
+  --main-error-color-light-scheme: #F08650;
 
   font-family: Roboto Slab;
   line-height: 1.5;
