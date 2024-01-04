@@ -3,6 +3,10 @@
     justify-content: space-between;
 }
 
+.caesar-caesarpage-form-plaintext-textarea-error {
+    outline: var(--main-error-color-light-scheme) solid 2px;
+}
+
 #caesar-caesarpage-form-plaintext-shift {
     display: flex;
     flex-direction: column;
@@ -13,6 +17,6 @@
     width: 80%;
 }
 
-#caesar-caesarpage-form-plaintext-textarea:focus-visible {
+.caesar-caesarpage-form-plaintext-textarea:focus-visible {
     outline: var(--main-font-color-light-scheme) auto 2px;
 }

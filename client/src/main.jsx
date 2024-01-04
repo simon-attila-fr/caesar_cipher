@@ -6,6 +6,10 @@ import './index.css';
 import App from './App.jsx';
 import TechnicalDetails from './pages/TechnicalDetails.jsx/TechnicalDetails.jsx';
 import CaesarPage from './pages/CaesarPage.jsx/CaesarPage.jsx';
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary.jsx'
+
+// TODO
+// [] ErrorBoundary or error handling for the pages ?
 
 const router = createBrowserRouter([
   {
@@ -14,13 +18,14 @@ const router = createBrowserRouter([
     children: [
       {
         path: 'caesar',
-        element: <CaesarPage/>
+        element: <CaesarPage/>,
       },
       {
         path: 'tech_details',
         element: <TechnicalDetails/>
       }
-    ]
+    ],
+    errorElement: <ErrorBoundary />
   },
 ])
 

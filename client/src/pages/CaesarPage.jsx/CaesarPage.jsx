@@ -1,14 +1,15 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Textarea from "../../components/Textarea/Textarea";
 import Caesar from "../../components/Caesar/Caesar";
 import "./CaesarPage.css";
 
 export default function CaesarPage() {
   const [plainText, setPlainText] = useState("");
-  const plaintextRef = useRef(null);
 
   const [encryptedText, setEncryptedText] = useState("");
   const [shift, setShift] = useState(0);
+
+  const [isError, setIsError] = useState({error: false, message: ""})
 
   function handlePlainText(e) {
     setPlainText(e.target.value);
@@ -19,7 +20,13 @@ export default function CaesarPage() {
   }
 
   useEffect(() => {
-    setEncryptedText(Caesar(plainText, Number(shift)));
+    try {
+      setIsError({error: false, message: ""})
+      setEncryptedText(Caesar(plainText, Number(shift)));
+    } catch (error) {
+      console.error(error)
+      setIsError({error: true, message: error.message})
+    }
   }, [plainText, encryptedText, shift]);
 
   return (
@@ -30,11 +37,12 @@ export default function CaesarPage() {
       <p>
         <span>Allowed caracters in this version:...</span>
       </p> */}
+      {isError.error && <div>{isError.message}</div>}  
       <form id="caesar-caesarpage-form">
         <div id="caesar-caesarpage-form-plaintext">
           <label htmlFor="caesar-caesarpage-form-plaintext-textarea">Plaintext</label>
           <Textarea
-            classname="caesar-caesarpage-form-plaintext-textarea"
+            classname={isError.error ? "caesar-caesarpage-form-plaintext-textarea-error" : "caesar-caesarpage-form-plaintext-textarea"}
             autofocus={true}
             cols="80"
             form="caesar-cipher-home-form"
@@ -46,7 +54,6 @@ export default function CaesarPage() {
             required
             value={plainText}
             onChange={handlePlainText}
-            ref={plaintextRef}
           />
         </div>
         <div id="caesar-caesarpage-form-plaintext-shift"> 
@@ -68,6 +75,7 @@ export default function CaesarPage() {
           cols="80"
           rows="10"
         />
+        {/* TODO: Copy to clipboard */}
         <button>Copy to clipboard</button>
       </div>
     </div>
