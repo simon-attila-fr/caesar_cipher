@@ -11,6 +11,7 @@ export default function CaesarPage() {
   const [shift, setShift] = useState(0);
 
   const [isError, setIsError] = useState({ error: false, message: "" });
+  const [message, setMessage] = useState("");
 
   function handlePlainText(e) {
     setPlainText(e.target.value);
@@ -20,14 +21,28 @@ export default function CaesarPage() {
     setShift(e.target.value);
   }
 
+  function handleMessage(msg, reset_after_delay = false, delay = 0) {
+    setMessage(msg);
+    if (reset_after_delay) {
+      setTimeout(() => {
+        setMessage("");
+      }, delay);
+    }
+  }
+
   function handleCopyToClipboard() {
     navigator.clipboard.writeText(encryptedText).then(
       () => {
         /* clipboard successfully set */
-        console.log(`Copied to the clipboard: ${encryptedText}`);
+        handleMessage(
+          "The encrypted text has been succesfully copied to the clipboard.",
+          true,
+          3000
+        );
       },
       (err) => {
         console.error(err);
+        handleMessage(err.message, true, 5000);
         /* clipboard write failed */
       }
     );
@@ -51,7 +66,8 @@ export default function CaesarPage() {
       <p>
         <span>Allowed caracters in this version:...</span>
       </p> */}
-      {isError.error && <div>{isError.message}</div>}
+      {(isError.error && <div>{isError.message}</div>) ||
+        (message && <div>{message}</div>)}
       <form id="caesar-caesarpage-form">
         <div id="caesar-caesarpage-form-plaintext">
           <label htmlFor="caesar-caesarpage-form-plaintext-textarea">
@@ -96,7 +112,6 @@ export default function CaesarPage() {
           cols="80"
           rows="10"
         />
-        {/* TODO: Copy to clipboard */}
         <Button onClick={handleCopyToClipboard}>Copy to clipboard</Button>
       </div>
     </div>
